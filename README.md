@@ -2,22 +2,27 @@
 
 node.js [harfbuzz](https://github.com/behdad/harfbuzz) bindings
 
-# Example
+# Examples
+
+Works with fonts loaded from buffers
 
 ```js
 var fs = require('fs');
-var ft = require('freetype2');
+var hb = require('../index.js');
 
-var face = {};
-ft.New_Memory_Face(fs.readFileSync(process.argv[2]), 0, face);
-face = face.face;
+var font = hb.createFont(fs.readFileSync(process.argv[2]), 64);
+var glyphs = hb.shape(font, process.argv[3]);
 
-var ptSize = 70*64;
-var device_hdpi = 72;
-var device_vdpi = 72;
-ft.Set_Char_Size(face, 0, ptSize, device_hdpi, device_vdpi );
+console.log(glyphs);
+```
 
-var hb = require('harfbuzz');
-var glyphs = hb(face.handle, "This is test text to shape");
+Also loads fonts from disk as a convenience
+
+```js
+var hb = require('../index.js');
+
+var font = hb.createFont(process.argv[2], 64);
+var glyphs = hb.shape(font, process.argv[3]);
+
 console.log(glyphs);
 ```

@@ -5,8 +5,8 @@
       "sources": [
         "src/harfbuzz.cc",
       ],
-      "include_dirs": ["<!(node -e \"require('nan')\")", "/usr/local/include/freetype2", "/usr/local/include/harfbuzz"],
-      "libraries": [ "-lfreetype", "-lharfbuzz" ]
+      "include_dirs": ["<!(node -e \"require('nan')\")", "/usr/local/include/harfbuzz"],
+      "libraries": [ "-lharfbuzz" ]
     }
   ]
 }
